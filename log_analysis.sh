@@ -32,7 +32,7 @@ case "$1" in
         echo "Status $CODE saved to status_$CODE.csv"
         ;;
 	--strings)
-        tail -n "$2" "$LOG_FILE" > "last_strings_$2.txt"
+        tail -n "$2" "$LOG_FILE" > "last_strings_$2.csv"
         echo "Last $2 strings saved"
         ;;
     *)
