@@ -4,7 +4,7 @@ DEFAULT_LOG="/home/test_task/log_analysis/nginx.log"
 
 # log file based
 case "$1" in
-    --top|--status)
+    --top|--strings|--lines)
         LOG_FILE="${3:-$DEFAULT_LOG}"
         ;;
     *)
@@ -30,6 +30,10 @@ case "$1" in
 # Filter log entries bystatus code
 	awk -v c="$2" '/^[0-9]+\./ && $9==c' "$LOG_FILE" > "status_$CODE.csv"
         echo "Status $CODE saved to status_$CODE.csv"
+        ;;
+	--strings)
+        tail -n "$2" "$LOG_FILE" > "last_strings_$2.txt"
+        echo "Last $2 strings saved"
         ;;
     *)
  # Parse nginx log to CSV
